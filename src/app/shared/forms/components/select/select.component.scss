@@ -1,0 +1,11 @@
+:host {
+  position: relative;
+
+  .err-message {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: red;
+    transform: translateY(100%);
+  }
+}

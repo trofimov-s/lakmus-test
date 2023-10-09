@@ -1,0 +1,60 @@
+<form class="form" [formGroup]="diagnosisForm" (ngSubmit)="onSubmit()">
+  <div class="form-field">
+    <label class="form-field__label" for="date">Дата:</label>
+    <app-input
+      formControlName="date"
+      fieldName="date"
+      type="date"
+      [id]="'date'"
+      [minValue]="todayDate"
+      [parentForm]="diagnosisForm"
+    ></app-input>
+  </div>
+
+  <div class="form-diagnoses">
+    <h3>Діагнози за ICPC-2</h3>
+
+    <ul class="form-diagnoses__list" formArrayName="diagnoses">
+      <ng-container
+        *ngFor="
+          let lessonForm of diagnosesFormArray.controls;
+          let i = index;
+          let length = count;
+          trackBy: trackBy
+        "
+      >
+        <li class="form-diagnoses__list-item" [formGroupName]="i">
+          <app-select
+            #select
+            type="text"
+            formControlName="diagnosis"
+            fieldName="diagnosis"
+            [options]="options"
+            [isLoading]="isLoading$ | async"
+            [parentForm]="lessonForm"
+            notFoundText="Діагноз не знайдено"
+            (searchData)="onSearch($event)"
+          />
+          <app-input
+            type="text"
+            formControlName="note"
+            fieldName="note"
+            placeholder="коментар"
+            [parentForm]="lessonForm"
+            [disabled]="!select.value"
+          />
+
+          <span class="form-diagnoses__remove-one" *ngIf="length > 1" (click)="removeDiagnosis(i)"
+            >X</span
+          >
+        </li>
+      </ng-container>
+    </ul>
+
+    <span class="form-diagnoses__add-more" (click)="addDiagnosis()">+ додати ще</span>
+  </div>
+
+  <app-button [type]="'submit'">Сформувати JSON</app-button>
+</form>
+
+<app-json-preview *ngIf="outputData" [outputData]="outputData" />

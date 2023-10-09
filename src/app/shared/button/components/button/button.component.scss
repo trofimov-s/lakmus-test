@@ -1,0 +1,19 @@
+@import 'vars';
+
+.btn {
+  border: 2px solid $blue;
+  background-color: white;
+  width: 100%;
+  color: $blue;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+
+  transition: background-color 150ms linear;
+
+  &:hover {
+    background-color: $light-blue;
+  }
+}

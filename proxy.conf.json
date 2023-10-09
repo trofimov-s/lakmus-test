@@ -1,0 +1,7 @@
+{
+  "context": ["/Dictionaries/*"],
+  "target": "https://global.lakmus.org",
+  "secure": false,
+  "changeOrigin": true,
+  "logLevel": "debug"
+}

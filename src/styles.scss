@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@ng-select/ng-select/themes/default.theme.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h3,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  outline: none;
+}

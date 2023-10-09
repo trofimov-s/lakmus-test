@@ -1,0 +1,16 @@
+<ng-select
+  #select
+  [id]="fieldName"
+  [placeholder]="placeholder"
+  [(ngModel)]="value"
+  [notFoundText]="notFoundText"
+  [loadingText]="loadingText"
+  [loading]="isLoading && select.isOpen"
+  (change)="changed($event)"
+  (blur)="touched()"
+  (search)="search($event)"
+  (close)="close()"
+>
+  <ng-option *ngFor="let option of options" [value]="option.value">{{ option.name }}</ng-option>
+</ng-select>
+<app-field-error *ngIf="formField.invalid && (formField.dirty || formField.touched)" [formField]="formField" />

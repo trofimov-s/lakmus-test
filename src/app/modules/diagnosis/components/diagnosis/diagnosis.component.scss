@@ -1,0 +1,78 @@
+@import 'vars';
+
+:host {
+  display: block;
+  width: 60%;
+  margin: 50px auto 0;
+  border-radius: 16px;
+  border: 1px solid gray;
+  padding: 20px 24px;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    &-field {
+      display: flex;
+      align-items: center;
+      column-gap: 6px;
+
+      &__label {
+        font-size: 20px;
+        font-weight: 700;
+      }
+    }
+
+    &-diagnoses {
+      display: flex;
+      flex-direction: column;
+      row-gap: 14px;
+
+      &__list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+
+        &-item {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          column-gap: 8px;
+
+          app-select,
+          app-input {
+            width: 50%;
+          }
+        }
+      }
+
+      &__remove-one {
+        cursor: pointer;
+        color: gray;
+        transition: color 150ms linear;
+        padding: 4px;
+
+        &:hover {
+          color: black;
+        }
+      }
+
+      &__add-more {
+        width: fit-content;
+        cursor: pointer;
+        color: $blue;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &__diagnoses-wrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+    }
+  }
+}

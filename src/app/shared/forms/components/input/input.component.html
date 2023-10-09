@@ -1,0 +1,13 @@
+<input
+  [type]="type"
+  class="input"
+  [id]="fieldName"
+  [name]="fieldName"
+  [value]="value"
+  (input)="onChanged($event)"
+  (blur)="touched()"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
+  [min]="minValue"
+/>
+<app-field-error *ngIf="formField.invalid && (formField.dirty || formField.touched)" [formField]="formField" />

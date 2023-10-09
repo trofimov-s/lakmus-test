@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@lakmus/environmets/*": ["src/environments/*"],
+      "@lakmus/utils": ["src/app/utils/index.ts"],
+      "@lakmus/shared/form-elements": ["src/app/shared/forms/index.ts"],
+      "@lakmus/shared/button": ["src/app/shared/button/index.ts"],
+      "@lakmus/shared/json-preview": ["src/app/shared/json-preview/index.ts"],
+      "@lakmus/core/models": ["src/app/core/models/index.ts"],
+      "@lakmus/core/services": ["src/app/core/services/api/index.ts"],
+      "@lakmus/modules/diagnosis": ["src/app/modules/diagnosis/index.ts"],
+    }
+  }
+}
