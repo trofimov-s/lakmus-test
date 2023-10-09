@@ -13,7 +13,7 @@ import { DateValidator, OptionI } from '@lakmus/shared/form-elements';
 import { DiagnosisFacadeService } from '../../services';
 import { DiagnosisData, DiagnosisI } from '@lakmus/core/models';
 import { OutputJSONI } from '../../models';
-import { MakeFormControlsDirty } from '@lakmus/utils';
+import { MakeFormControlsDirty, SubscriptionDetacher } from '@lakmus/utils';
 
 interface DiagnosesFormArrayItemI {
   diagnosis: FormControl<DiagnosisI>;
@@ -37,6 +37,7 @@ interface DiagnosisFormValueI {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DiagnosisComponent implements OnInit, OnDestroy {
+  private detacher = new SubscriptionDetacher();
   private search$ = new BehaviorSubject<string>('');
   readonly todayDate = new DatePipe('en-US').transform(new Date(), 'YYYY-MM-dd');
   isLoading$ = new BehaviorSubject<boolean>(false);
@@ -73,7 +74,8 @@ export class DiagnosisComponent implements OnInit, OnDestroy {
             name: `${diagnosis.code} ${diagnosis.name}`,
             value: diagnosis,
           }))
-        )
+        ),
+        this.detacher.takeUntilDetach()
       )
       .subscribe((options: OptionI<DiagnosisI>[]) => {
         this.isLoading$.next(false);
@@ -85,6 +87,7 @@ export class DiagnosisComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.search$.next(null);
     this.search$.complete();
+    this.detacher.detach();
   }
 
   onSearch(search: string): void {
